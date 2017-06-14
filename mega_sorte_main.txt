@@ -1,0 +1,108 @@
+#include <iostream>
+#include <cstdlib>
+#include <string.h>
+#include <list>
+#include <vector>
+#include <random>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+
+using namespace std;
+
+void sugestao_number(int num, vector<vector<int>> numeros)
+{
+	std::cout << "        \Escreve sugestao de posicao " << num << endl;
+	for (int i = 0; i < 1; i++)
+	{
+		std::cout << "        " << numeros.at(num).at(0) << " | " << numeros.at(num).at(1) << endl;
+		std::cout << "        " << numeros.at(num).at(2) << " | " << numeros.at(num).at(3) << endl;
+	}
+	std::cout << "        Sugestao numerica: ------------------------------------------------> " << numeros.at(num).at(rand() % 3) << endl;
+	std::cout << "\n";
+}
+
+int main()
+{
+	/*
+	01 02 03 04 05 06 07 08 09 10	
+	11 12 13 14 15 16 17 18 19 20
+	21 22 23 24 25 26 27 28 29 30
+	31 32 33 34 35 36 37 38 39 40
+	41 42 43 44 45 46 47 48 49 50
+	51 52 53 54 55 56 57 58 59 60
+	*/
+
+	vector<vector<int>> numeros;
+	numeros.push_back(vector<int>{  1,  2, 11, 12 });
+	numeros.push_back(vector<int>{  3, 4, 13, 14 });
+	numeros.push_back(vector<int>{  5, 6, 15, 16 });
+	numeros.push_back(vector<int>{  7, 8, 17, 18 });
+	numeros.push_back(vector<int>{  9, 10, 19, 20 });
+	numeros.push_back(vector<int>{ 21, 22, 31, 32 });
+	numeros.push_back(vector<int>{ 23, 24, 33, 34 });
+	numeros.push_back(vector<int>{ 25, 26, 35, 36 });
+	numeros.push_back(vector<int>{ 27, 28, 37, 38 });
+	numeros.push_back(vector<int>{ 29, 30, 39, 40 });
+	numeros.push_back(vector<int>{ 41, 42, 51, 52 });
+	numeros.push_back(vector<int>{ 43, 44, 53, 54 });
+	numeros.push_back(vector<int>{ 45, 46, 55, 56 });
+	numeros.push_back(vector<int>{ 47, 48, 57, 58 });
+	numeros.push_back(vector<int>{ 49, 50, 59, 60 });
+
+	srand(time(NULL));
+
+	//Numeros por cartela.
+	int increment = 6;
+
+	std::cout << "	PROBABILIDADE NUMERICA -------------------------------------------------------" << endl;
+	std::cout << "	----------------------------------------SENA------------QUINA-----------QUADRA" << endl;
+	std::cout << "	6 numeros	R$3,50			50.063.860	154.518		2.332"  << endl;
+	std::cout << "	7 numeros	R$24,50			7.151.980	44.981		1.038"  << endl;
+	std::cout << "	8 numeros	R$98,00			1.787.995	17.192		539"	<< endl;
+	std::cout << "	9 numeros	R$294,00		595.998		7.791		312"	<< endl;
+	std::cout << "	10 numeros	R$735,00		238.399		3.973		195"	<< endl;
+	std::cout << "	11 numeros	R$1.617,00		108.363		2.211		129"	<< endl;
+	std::cout << "	12 numeros	R$3.234,00		54.182		1.317		90"		<< endl;
+	std::cout << "	13 numeros	R$6.006,00		29.175		828		65"			<< endl;
+	std::cout << "	14 numeros	R$10.510,50		16.671		544		48"			<< endl;
+	std::cout << "	15 numeros	R$17.517,50		10.003		370		37"			<< endl;
+	std::cout << endl;
+	std::cout << "	Quantidade de numeros selecionado nessa cartela: " << increment << endl;
+	std::cout << endl;
+	std::cout << endl;
+
+
+	vector<int>  nr_list;
+	do
+	{
+		int r_number = rand() % 15;
+		bool isInside = false;
+		for (int i = 0; i < nr_list.size(); i++)
+		{
+			if (nr_list.at(i) == r_number)
+			{
+				isInside = true;
+			}
+		}
+
+		if (isInside == false)
+		{
+			nr_list.push_back(r_number);
+			increment--;
+		}
+
+	} while (increment != 0);
+	
+	for (int i = 0; i < nr_list.size(); i++)
+	{
+		sugestao_number(nr_list[i], numeros);
+	}
+
+
+	std::cout << "	FIM DA OPERACAO -------------------------------------------------------" << endl;
+	std::cout << "	" << endl;
+
+	std::system("pause");
+	return 1;
+}
